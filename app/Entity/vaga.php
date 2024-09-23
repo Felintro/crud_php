@@ -75,6 +75,15 @@ class Vaga {
 	 * @param string $limit
 	 * @return array
 	 */
+
+	/**
+	 * Método responsável por excluir a vaga do banco de dados
+	 * @return boolean
+	 */
+	public function excluir() {
+		return (new Database('vagas'))->delete('id= '.$this->id);
+	}
+
 	public static function getVagas($where = null, $order = null, $limit = null) {
 		return (new Database('vagas'))->select($where, $order, $limit)
 									  ->fetchAll(PDO::FETCH_CLASS, self::class);

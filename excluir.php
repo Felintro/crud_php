@@ -1,11 +1,10 @@
 <?php
 
-require __DIR__ ."/vendor/autoload.php";
-
-define('TITLE', 'Editar Vaga');
-define('SUBMETER', 'Salvar');
+require __DIR__ . "/vendor/autoload.php";
 
 use \App\Entity\Vaga;
+
+define('SUBMETER', 'Confirmar');
 
 // Validação do Get
 if(!isset($_GET['id']) or !is_numeric($_GET['id'])) {
@@ -21,17 +20,15 @@ if(!$obVaga instanceof Vaga) {
 	exit;
 }
 
-// Validação do Post
-if(isset($_POST["titulo"], $_POST['descricao'], $_POST['ativo'])) {
-	$obVaga->titulo 	= $_POST['titulo'];
-	$obVaga->descricao 	= $_POST['descricao'];
-	$obVaga->ativo 		= $_POST['ativo'];
-	$obVaga->atualizar();
+// echo "<pre>"; print_r($obVaga); echo "</pre>"; exit;
 
+// Validação do Post
+if(isset($_POST["excluir"])) {
+	$obVaga->excluir();
 	header('location: index.php?status=success');
 	exit;
 }
 
 include __DIR__ . '/includes/header.php';
-include __DIR__ . '/includes/formulario.php';
+include __DIR__ . '/includes/confirmar-exclusao.php';
 include __DIR__ . '/includes/footer.php';
