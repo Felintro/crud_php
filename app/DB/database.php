@@ -130,4 +130,15 @@ class Database {
 		return true;
 	}
 
+	/**
+	 * Método responsável por efetuar o delete no banco de dados
+	 * @param string $where
+	 * @return boolean
+	 */
+	public function delete($where) {
+		$query = 'DELETE FROM '.$this->table.' WHERE '.$where;
+		$this->execute($query);
+		return true;
+	}
+
 }
